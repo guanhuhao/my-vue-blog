@@ -25,7 +25,7 @@ onMounted(() => {
       <!-- 友链列表 -->
       <LinkList :link-list="linkList" />
       <!-- 添加友链 -->
-      <AddLink />
+      <!-- <AddLink /> -->
       <!-- 评论 -->
       <Comment class="mt-30" :type="2" />
     </div>

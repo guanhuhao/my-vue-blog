@@ -125,7 +125,7 @@ async function logout() {
             </div>
           </div>
           <!-- 登录 -->
-          <div class="menus-item">
+          <!-- <div class="menus-item">
             <a v-if="!userStore.userId" class="menu-btn" @click="appStore.setLoginFlag(true)">
               <div class="flex items-center">
                 <Icon icon="ph:user-bold" class="text-xl" />
@@ -147,7 +147,7 @@ async function logout() {
                 </a>
               </ul>
             </template>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

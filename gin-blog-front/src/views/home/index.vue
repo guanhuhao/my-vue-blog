@@ -70,7 +70,7 @@ function backTop() {
 
 <template>
   <!-- 首页封面图 -->
-  <HomeBanner />
+  <HomeBanner/>
   <!-- 内容 -->
   <div class="mx-auto mb-8 max-w-[1230px] flex flex-col justify-center px-3" style="margin-top: calc(100vh + 30px)">
     <div class="grid grid-cols-12 gap-4">

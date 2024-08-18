@@ -1,5 +1,6 @@
 Server:
   Mode: debug # debug | release
+  # Port: 172.16.120.233:8765
   Port: :8765
   DbType: "mysql" # mysql | sqlite
   DbAutoMigrate: true # 是否自动迁移数据库表结构 (表结构没变可以不迁移, 提高启动速度)
@@ -13,14 +14,14 @@ Mysql:
   Port: "3306"
   Config: "charset=utf8mb4&parseTime=True&loc=Local" # 其他配置, 例如时区
   Dbname: "gvb"
-  Username: "root"
-  Password: "123456"
+  Username: "guan"
+  Password: "19990320"
 Sqlite:
   Dsn: "gvb.db"
 Redis:
-  DB: 7
+  DB: 0
   Addr: '127.0.0.1:6379'
-  Password: ''
+  Password: 'gcsj1234'
 Session:
   Name: "mysession"
   Salt: "salt"
