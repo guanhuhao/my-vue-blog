@@ -25,3 +25,6 @@ pnpm-lock.yaml
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
+
+# database data
+./data/*
