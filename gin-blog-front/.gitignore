@@ -36,3 +36,5 @@ stats.html
 # Dotenv
 *.local
 !.env.sample
+.env.development
+.env.production
