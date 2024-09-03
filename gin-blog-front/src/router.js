@@ -5,6 +5,11 @@ import './styles/nprogress.css'
 
 const basicRoutes = [
   {
+    name: 'test',
+    path: '/test',
+    component: () => import('@/views/test/index.vue'),
+  },
+  {
     name: 'Home',
     path: '/',
     component: () => import('@/views/home/index.vue'),

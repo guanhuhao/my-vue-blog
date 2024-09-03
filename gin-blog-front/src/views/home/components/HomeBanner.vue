@@ -11,7 +11,7 @@ const { pageList, blogConfig } = storeToRefs(useAppStore())
 const typer = reactive({
   output: '',
   isEnd: false, // 全局控制是否终止
-  speed: 300, // 打字速度
+  speed: 200, // 打字速度
   singleBack: false, // 单次的回滚
   sleep: 0, // 完整输出一句话后, 睡眠一定时候后触发回滚事件
   type: 'normal', // rollback, normal
@@ -25,11 +25,12 @@ onMounted(() => {
 
 function getOneSentence() {
   // 一言 + 打字机特效
-  fetch('https://v1.hitokoto.cn?c=i')
-    .then(res => res.json())
+  // fetch('https://v1.hitokoto.cn?c=i')
+  //   .then(res => res.json())
     // .then(data => new EasyTyper(typer, "阅尽千帆,洗净铅华,走出半生,归来仍是少年", () => {}, () => {}))
     // .catch(() => new EasyTyper(typer, "阅尽千帆,洗净铅华,走出半生,归来仍是少年", () => {}, () => {}))
-    .catch(() => new EasyTyper(typer, "愿一路前行,不负少年梦!", () => {}, () => {}))
+    // .catch(() => new EasyTyper(typer, "愿一路前行,不负少年梦!", () => {}, () => {}))
+    new EasyTyper(typer, "愿一路同行,不负少年梦~", () => {}, () => {})
 }
 
 function scrollDown() {

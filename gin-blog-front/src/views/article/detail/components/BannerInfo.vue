@@ -32,8 +32,8 @@ function formatDate(date) {
 
 <template>
   <!-- PC 端显示 -->
-  <div class="mx-4 mt-12 hidden text-center text-light lg:block">
-    <h1 class="text-3xl">
+  <div class="titleBox">
+    <h1 class="text-5xl">
       {{ article.title }}
     </h1>
     <p class="f-c-c py-2">
@@ -50,14 +50,14 @@ function formatDate(date) {
       <span class="px-2">|</span>
       <span class="i-mdi:timelapse mr-1 text-lg" /> 阅读时长：{{ readTime }}
       <span class="px-2">|</span>
-      <span class="i-mdi:eye mr-1 text-lg" /> 阅读量：{{ article.view_count }}
+      <!-- <span class="i-mdi:eye mr-1 text-lg" /> 阅读量：{{ article.view_count }}
       <span class="px-2">|</span>
-      <span class="i-ic:outline-insert-comment mr-1 text-lg" /> 评论数：{{ article.comment_count }}
+      <span class="i-ic:outline-insert-comment mr-1 text-lg" /> 评论数：{{ article.comment_count }} -->
     </div>
   </div>
   <!-- 移动端显示 -->
   <div class="mx-4 mt-12 block text-left text-light lg:hidden space-y-1.5">
-    <h1 class="text-2xl">
+    <h1 class="text-4xl">
       {{ article.title }}
     </h1>
     <div class="mb-1 mt-2 flex flex-wrap items-center lg:justify-center">
@@ -81,9 +81,31 @@ function formatDate(date) {
       <span class="i-mdi:timelapse mr-1" /> 阅读时长：{{ readTime }}
     </div>
     <div>
-      <span class="i-mdi:eye mr-1" /> 阅读量：{{ article.view_count }}
+      <!-- <span class="i-mdi:eye mr-1" /> 阅读量：{{ article.view_count }}
       <span class="px-2">|</span>
-      <span class="i-ic:outline-insert-comment mr-1" /> 评论数：{{ article.comment_count }}
+      <span class="i-ic:outline-insert-comment mr-1" /> 评论数：{{ article.comment_count }} -->
     </div>
   </div>
 </template>
+
+<style lang="scss" scoped>
+.titleBox {
+    margin-left: 1rem;    /* mx-4 */
+    margin-right: 1rem;   /* mx-4 */
+    margin-top: 4rem;     /* mt-12 */
+    margin-bottom: 2rem;     /* mt-12 */
+    text-align: center;   /* text-center */
+    color: #f8f9fa;       /* text-light */
+    display: none;        /* hidden */
+    
+    /* 内联样式转换 */
+    background-color: rgba(128, 128, 128, 0.75);
+    border-radius: 20px;
+    align-self: flex-end; 
+    
+    /* 响应式规则 - lg:block */
+    @media (min-width: 1024px) {
+      display: block;
+    }
+}
+</style>

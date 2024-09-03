@@ -7,8 +7,14 @@ dist-ssr
 node_modules
 .idea/
 pnpm-lock.yaml
+*.sql
 # .vscode/
 *.log
+./gin-blog-admin/.env.development
+./gin-blog-front/.env.development
+./gin-blog-front/.env.production
+*config.yml
+data/*
 
 # Binaries for programs and plugins
 *.exe

@@ -16,10 +16,12 @@ import Reward from './components/Reward.vue'
 import Forward from './components/Forward.vue'
 import LastNext from './components/LastNext.vue'
 import Recommend from './components/Recommend.vue'
-import Catalogue from './components/Catalogue.vue'
 
 import AppFooter from '@/components/layout/AppFooter.vue'
 import Comment from '@/components/comment/Comment.vue'
+
+import {MdPreview, MdCatalog} from 'md-editor-v3';
+import 'md-editor-v3/lib/style.css';
 
 import { convertImgUrl } from '@/utils'
 import api from '@/api'
@@ -28,6 +30,13 @@ hljs.registerLanguage('go', go)
 hljs.registerLanguage('bash', bash)
 hljs.registerLanguage('json', json)
 hljs.registerLanguage('javascript', javascript)
+
+// MdPreview.previewTheme("mk-cute")
+
+const id = 'preview-only';
+const text = ref('# Hello Editor');
+const theme = 'mk-cute'
+const scrollElement = document.documentElement;
 
 const route = useRoute()
 
@@ -50,15 +59,15 @@ const data = ref({
 })
 
 // 文章内容
-const previewRef = ref(null)
 const loading = ref(true)
 
 onMounted(async () => {
   try {
     const resp = await api.getArticleDetail(route.params.id)
     data.value = resp.data
+    data.content = resp.data
     // marked 解析 markdown 文本
-    data.value.content = await marked.parse(resp.data.content, { async: true })
+    // data.value.content = await marked.parse(resp.data.content, { async: true })
     await nextTick()
     // highlight.js 代码高亮
     document.querySelectorAll('pre code').forEach(el => hljs.highlightElement(el))
@@ -87,15 +96,19 @@ const styleVal = computed(() =>
   </div>
   <!-- 主体内容 -->
   <main class="flex-1">
-    <div class="card-fade-up grid grid-cols-12 mx-auto mb-3 mt-[380px] gap-4 px-1 lg:mt-[440px] lg:max-w-[1200px]">
+    <div class="card-fade-up grid grid-cols-15 mx-auto mb-3 mt-[380px] gap-4 px-1 lg:mt-[440px] lg:max-w-[1300px]">
+
+      <div class="col-span-0 lg:col-span-3">
+        <div class="sticky top-5 hidden lg:block space-y-4">
+          <!-- 目录 -->
+          <MdCatalog :editorId="id" :scrollElement="scrollElement" />
+        </div>
+      </div>
+
       <!-- 文章主体 -->
-      <div class="card-view col-span-12 mx-2 pt-7 lg:col-span-9 lg:mx-0">
+      <div class="card-view col-span-15 mx-2 pt-7 lg:col-span-9 lg:mx-0">
         <!-- 文章内容 -->
-        <article
-          ref="previewRef"
-          class="max-w-none prose prose-truegray lg:mx-10"
-          v-html="data.content"
-        />
+        <MdPreview :editorId="id" :modelValue="data.content" :previewTheme="theme" :theme='dark'/>
         <!-- 版权声明 -->
         <Copyright class="my-5 lg:mx-5" />
         <!-- 标签、转发 -->
@@ -125,9 +138,7 @@ const styleVal = computed(() =>
       <!-- 文章侧边栏 -->
       <div class="col-span-0 lg:col-span-3">
         <div class="sticky top-5 hidden lg:block space-y-4">
-          <!-- 目录 -->
-          <!-- TODO: v-if 的方法不太好, 想办法解决父组件接口获取数据, 子组件渲染问题 -->
-          <Catalogue v-if="!loading" :preview-ref="previewRef" />
+
           <!-- 最新文章 -->
           <LatestList :article-list="data.newest_articles" />
         </div>
